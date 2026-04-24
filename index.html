@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuria — Automatización con IA para tu negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#080910;color:#BEC4E0;font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.light{background:#F4F5FA;color:#2A2D3E}
+body.light .container p{color:#555972}
+a{color:inherit;text-decoration:none}
+p{text-wrap:pretty}
+::selection{background:rgba(79,110,247,0.3);color:#fff}
+
+/* Light mode overrides */
+body.light nav{background:rgba(244,245,250,0.92) !important;border-bottom-color:rgba(79,110,247,0.15) !important}
+body.light footer{background:#E8EAF4 !important;border-top-color:#D4D6E8 !important}
+body.light section{background:#F4F5FA !important}
+body.light .section-title{color:#1A1C2E !important}
+
+.container{max-width:1160px;margin:0 auto;padding:0 5%}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7B96FF;margin-bottom:20px}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:#4F6EF7}
+.section-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(34px,4.2vw,52px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#F0F2FF;margin-bottom:20px}
+.section-sub{font-size:clamp(16px,1.6vw,18px);color:#7A80A0;line-height:1.75;max-width:560px}
+.mx-auto{margin-left:auto;margin-right:auto}
+
+@keyframes pulse-anim{0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(0,212,170,0.5)}50%{opacity:.8;transform:scale(1.1);box-shadow:0 0 0 5px rgba(0,212,170,0)}}
+@keyframes float-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes status-pulse{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.page-enter{animation:fade-up 0.4s cubic-bezier(0.16,1,0.3,1) both}
+
+/* Responsive helpers */
+@media(max-width:900px){
+  .hero-inner,.two-col{grid-template-columns:1fr !important}
+  .hero-inner .hero-visual{order:-1}
+  .steps-track{grid-template-columns:1fr !important}
+  .steps-line{display:none !important}
+  .benefits-grid,.sectors-grid,.test-grid,.two-col-grid{grid-template-columns:1fr 1fr !important}
+  .footer-grid{grid-template-columns:1fr 1fr !important}
+  .stats-grid{grid-template-columns:1fr 1fr !important}
+  .proof-divider{display:none !important}
+}
+@media(max-width:600px){
+  section{padding:80px 0 !important}
+  .nav-links-desktop{display:none !important}
+  .btn-ghost-nav{display:none !important}
+  .nav-hamburger{display:flex !important}
+  .benefits-grid,.sectors-grid,.test-grid,.two-col-grid{grid-template-columns:1fr !important}
+  .footer-grid{grid-template-columns:1fr !important; gap:32px !important}
+  .form-row{grid-template-columns:1fr !important}
+  .fc-2{display:none !important}
+  .two-col{gap:40px !important}
+}
+
+/* Tweaks panel */
+#tweaks-panel{
+  display:none;position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:#10131C;border:1px solid #252A3F;border-radius:20px;
+  padding:20px 22px;width:272px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(79,110,247,0.12);
+}
+#tweaks-panel h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#F0F2FF;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between}
+.tw-close{color:#7A80A0;cursor:pointer;font-size:18px;line-height:1;background:none;border:none}
+.tw-group{margin-bottom:16px}
+.tw-label{font-size:10px;font-weight:600;color:#4A5070;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.tw-opts{display:flex;gap:6px;flex-wrap:wrap}
+.tw-btn{padding:5px 12px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid #252A3F;background:#181C28;color:#7A80A0;cursor:pointer;transition:all 150ms;font-family:'DM Sans',sans-serif}
+.tw-btn.on,.tw-btn:hover{background:rgba(79,110,247,0.12);border-color:rgba(79,110,247,0.4);color:#7B96FF}
+
+/* Form inputs global */
+input,select,textarea{color-scheme:dark}
+input:focus,select:focus,textarea:focus{border-color:#4F6EF7 !important;box-shadow:0 0 0 3px rgba(79,110,247,0.15) !important}
+input::placeholder,textarea::placeholder{color:#4A5070}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- Tweaks panel (outside React) -->
+<div id="tweaks-panel">
+  <h3>Tweaks <button class="tw-close" id="tw-close-btn">✕</button></h3>
+  <div class="tw-group">
+    <div class="tw-label">Idioma / Language</div>
+    <div class="tw-opts">
+      <button class="tw-btn on" data-tw="lang" data-val="es">ES</button>
+      <button class="tw-btn" data-tw="lang" data-val="ca">CA</button>
+      <button class="tw-btn" data-tw="lang" data-val="en">EN</button>
+    </div>
+  </div>
+  <div class="tw-group">
+    <div class="tw-label">Modo de color</div>
+    <div class="tw-opts">
+      <button class="tw-btn on" data-tw="mode" data-val="dark">Oscuro</button>
+      <button class="tw-btn" data-tw="mode" data-val="light">Claro</button>
+    </div>
+  </div>
+  <div class="tw-group">
+    <div class="tw-label">Página activa</div>
+    <div class="tw-opts" style="flex-direction:column;gap:4px">
+      <button class="tw-btn on" data-tw="page" data-val="home">Inicio</button>
+      <button class="tw-btn" data-tw="page" data-val="services">Servicios</button>
+      <button class="tw-btn" data-tw="page" data-val="about">Sobre nosotros</button>
+      <button class="tw-btn" data-tw="page" data-val="cases">Casos de éxito</button>
+      <button class="tw-btn" data-tw="page" data-val="blog">Blog</button>
+      <button class="tw-btn" data-tw="page" data-val="contact">Contacto</button>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel" src="HomePage.jsx"></script>
+<script type="text/babel" src="ServiciosPage.jsx"></script>
+<script type="text/babel" src="SobreNosotrosPage.jsx"></script>
+<script type="text/babel" src="CasosPage.jsx"></script>
+<script type="text/babel" src="BlogPage.jsx"></script>
+<script type="text/babel" src="ContactoPage.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "lang": "es",
+  "mode": "dark",
+  "page": "home"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [page, setPage] = React.useState(TWEAK_DEFAULTS.page);
+  const [lang, setLang] = React.useState(TWEAK_DEFAULTS.lang);
+  const [darkMode, setDarkMode] = React.useState(TWEAK_DEFAULTS.mode === 'dark');
+
+  // Apply dark/light to body
+  React.useEffect(() => {
+    document.body.classList.toggle('light', !darkMode);
+  }, [darkMode]);
+
+  // Sync with tweaks panel external buttons
+  React.useEffect(() => {
+    const handler = (e) => {
+      if (e.data && e.data.type === '__activate_edit_mode') {
+        document.getElementById('tweaks-panel').style.display = 'block';
+      }
+      if (e.data && e.data.type === '__deactivate_edit_mode') {
+        document.getElementById('tweaks-panel').style.display = 'none';
+      }
+    };
+    window.addEventListener('message', handler);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', handler);
+  }, []);
+
+  // Tweaks panel wiring
+  React.useEffect(() => {
+    const panel = document.getElementById('tweaks-panel');
+    const closeBtn = document.getElementById('tw-close-btn');
+
+    const handleClick = (e) => {
+      const btn = e.target.closest('[data-tw]');
+      if (!btn) return;
+      const tw = btn.dataset.tw;
+      const val = btn.dataset.val;
+
+      // Update active state
+      panel.querySelectorAll(`[data-tw="${tw}"]`).forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+
+      if (tw === 'lang') { setLang(val); window.parent.postMessage({type:'__edit_mode_set_keys',edits:{lang:val}},'*'); }
+      if (tw === 'mode') { setDarkMode(val==='dark'); window.parent.postMessage({type:'__edit_mode_set_keys',edits:{mode:val}},'*'); }
+      if (tw === 'page') { setPage(val); window.scrollTo(0,0); window.parent.postMessage({type:'__edit_mode_set_keys',edits:{page:val}},'*'); }
+    };
+
+    panel.addEventListener('click', handleClick);
+    closeBtn.addEventListener('click', () => {
+      panel.style.display = 'none';
+      window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+    });
+    return () => panel.removeEventListener('click', handleClick);
+  }, []);
+
+  const pages = { home: HomePage, services: ServiciosPage, about: SobreNosotrosPage, cases: CasosPage, blog: BlogPage, contact: ContactoPage };
+  const PageComponent = pages[page] || HomePage;
+
+  return (
+    <div>
+      <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} />
+      <main style={{paddingTop:0}} className="page-enter" key={page}>
+        <PageComponent setPage={setPage} lang={lang} />
+      </main>
+      <Footer setPage={setPage} lang={lang} />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+
+<template id="__bundler_thumbnail" data-bg-color="#080910">
+  <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="260" fill="#080910"/>
+    <rect x="0" y="0" width="400" height="40" fill="#0D0F18"/>
+    <rect x="20" y="12" width="4" height="16" rx="2" fill="#4F6EF7"/>
+    <path d="M24 12 L31 28" stroke="#4F6EF7" stroke-width="4" stroke-linecap="round"/>
+    <rect x="31" y="12" width="4" height="16" rx="2" fill="#4F6EF7"/>
+    <circle cx="27.5" cy="20" r="2.5" fill="#00D4AA"/>
+    <rect x="43" y="16" width="36" height="8" rx="3" fill="#4F6EF7" opacity="0.8"/>
+    <ellipse cx="200" cy="130" rx="220" ry="120" fill="#4F6EF7" opacity="0.06"/>
+    <rect x="40" y="70" width="180" height="20" rx="4" fill="#EEF0FF" opacity="0.9"/>
+    <rect x="40" y="98" width="140" height="20" rx="4" fill="#4F6EF7" opacity="0.7"/>
+    <rect x="40" y="130" width="220" height="10" rx="3" fill="#7A80A0" opacity="0.5"/>
+    <rect x="40" y="148" width="180" height="10" rx="3" fill="#7A80A0" opacity="0.35"/>
+    <rect x="40" y="172" width="110" height="32" rx="16" fill="#4F6EF7"/>
+    <rect x="162" y="172" width="90" height="32" rx="16" fill="none" stroke="#252A3F" stroke-width="1.5"/>
+    <rect x="250" y="60" width="130" height="170" rx="16" fill="#10131C" stroke="#252A3F" stroke-width="1"/>
+    <rect x="250" y="60" width="130" height="36" rx="16" fill="#181C28"/>
+    <rect x="250" y="82" width="130" height="14" fill="#181C28"/>
+    <circle cx="268" cy="78" r="10" fill="#4F6EF7"/>
+    <rect x="262" y="112" width="76" height="18" rx="4 12 12 12" fill="#181C28" stroke="#252A3F" stroke-width="0.5"/>
+    <rect x="310" y="138" width="56" height="18" rx="12 4 12 12" fill="#4F6EF7"/>
+    <rect x="262" y="165" width="96" height="26" rx="4 12 12 12" fill="#181C28" stroke="#252A3F" stroke-width="0.5"/>
+    <rect x="0" y="235" width="400" height="25" fill="#0D0F18"/>
+  </svg>
+</template>
+</body>
+</html>
