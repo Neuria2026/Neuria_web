@@ -1,6 +1,7 @@
 
-function ServiciosPage({ setPage }) {
+function ServiciosPage({ setPage, goToContact }) {
   const go = (id) => { setPage(id); window.scrollTo(0,0); };
+  const gotoForm = goToContact || (() => gotoForm());
   const [active, setActive] = React.useState(0);
 
   const services = [
@@ -128,40 +129,18 @@ function ServiciosPage({ setPage }) {
                 <p style={{fontSize:14,color:'#BEC4E0',lineHeight:1.7,fontStyle:'italic'}}>"{s.useCase}"</p>
               </div>
 
-              <button onClick={() => go('contact')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:999,background:s.color,border:'none',cursor:'pointer',fontSize:15,fontWeight:700,color: s.color==='#00D4AA' ? '#06100D' : '#fff',fontFamily:"'DM Sans',sans-serif",marginTop:32,transition:'all 220ms'}}>
+              <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:999,background:s.color,border:'none',cursor:'pointer',fontSize:15,fontWeight:700,color: s.color==='#00D4AA' ? '#06100D' : '#fff',fontFamily:"'DM Sans',sans-serif",marginTop:32,transition:'all 220ms'}}>
                 Solicitar demo de {s.title} →
               </button>
             </div>
 
-            {/* Flow visual */}
+            {/* Interactive pipeline */}
             <div style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:22,padding:28,boxShadow:'0 24px 60px rgba(0,0,0,0.4)'}}>
-              <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:22,fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:'#7A80A0',letterSpacing:'0.08em',textTransform:'uppercase'}}>
+              <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:20,fontFamily:"'JetBrains Mono',monospace",fontSize:11,color:'#7A80A0',letterSpacing:'0.08em',textTransform:'uppercase'}}>
                 <div style={{width:8,height:8,borderRadius:'50%',background:'#00D4AA'}}/>
-                Flujo automatizado · En tiempo real
+                Flujo automatizado · haz clic en cada paso
               </div>
-              {s.visual.map((v, i) => (
-                <React.Fragment key={i}>
-                  <div style={{display:'flex',alignItems:'center',gap:14,padding:'14px 16px',borderRadius:12,background:'#181C28',border:`1px solid ${v.status==='active' ? `rgba(${s.colorRgb},0.4)` : '#1E2235'}`,marginBottom:8,boxShadow: v.status==='active' ? `0 0 20px rgba(${s.colorRgb},0.1)` : 'none',transition:'all 300ms'}}>
-                    <div style={{width:36,height:36,borderRadius:10,flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center',fontSize:16,background: v.status==='done' ? 'rgba(34,197,94,0.1)' : v.status==='active' ? `rgba(${s.colorRgb},0.15)` : 'rgba(255,255,255,0.03)',border: `1px solid ${v.status==='done' ? 'rgba(34,197,94,0.2)' : v.status==='active' ? `rgba(${s.colorRgb},0.3)` : '#252A3F'}`}}>{v.status==='done' ? '✓' : v.icon}</div>
-                    <div style={{flex:1}}>
-                      <div style={{fontSize:13,fontWeight:600,color: v.status==='pending' ? '#4A5070' : '#F0F2FF'}}>{v.step}</div>
-                    </div>
-                    <div style={{fontSize:11,fontWeight:600,padding:'3px 9px',borderRadius:999,
-                      background: v.status==='done' ? 'rgba(34,197,94,0.1)' : v.status==='active' ? `rgba(${s.colorRgb},0.12)` : 'rgba(255,255,255,0.03)',
-                      color: v.status==='done' ? '#22C55E' : v.status==='active' ? s.color : '#4A5070',
-                      border: `1px solid ${v.status==='done' ? 'rgba(34,197,94,0.25)' : v.status==='active' ? `rgba(${s.colorRgb},0.3)` : '#252A3F'}`,
-                      animation: v.status==='active' ? 'status-pulse 2s infinite' : 'none'
-                    }}>
-                      {v.status==='done' ? 'Completado' : v.status==='active' ? 'En proceso' : 'Pendiente'}
-                    </div>
-                  </div>
-                  {i < s.visual.length-1 && <div style={{textAlign:'center',color:'#252A3F',fontSize:18,margin:'2px 0'}}>↓</div>}
-                </React.Fragment>
-              ))}
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 18px',background:`rgba(${s.colorRgb},0.06)`,border:`1px solid rgba(${s.colorRgb},0.25)`,borderRadius:14,marginTop:8}}>
-                <span style={{fontSize:14,fontWeight:600,color:s.color}}>Resultado final</span>
-                <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF'}}>100% automático</span>
-              </div>
+              <IlluPipeline steps={s.visual.map(v => v.step)}/>
             </div>
           </div>
         </div>
@@ -187,7 +166,7 @@ function ServiciosPage({ setPage }) {
               </div>
             ))}
           </div>
-          <button onClick={() => go('contact')} style={{marginTop:40,display:'inline-flex',alignItems:'center',gap:8,padding:'16px 32px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:16,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
+          <button onClick={() => gotoForm()} style={{marginTop:40,display:'inline-flex',alignItems:'center',gap:8,padding:'16px 32px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:16,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
             Solicitar propuesta gratuita →
           </button>
         </div>

@@ -1,5 +1,5 @@
 
-function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode }) {
+function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode, goToContact }) {
   const t = window.i18n[lang].nav;
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
@@ -21,15 +21,16 @@ function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode }) {
   ];
 
   const go = (id) => { setPage(id); setMenuOpen(false); window.scrollTo(0,0); };
+  const gotoForm = goToContact || (() => gotoForm());
 
   return (
     <nav style={{
       position:'fixed', top:0, left:0, right:0, zIndex:200,
       height:66, padding:'0 5%',
       display:'flex', alignItems:'center', justifyContent:'space-between',
-      background: scrolled ? 'rgba(8,9,16,0.92)' : 'rgba(8,9,16,0.75)',
-      backdropFilter:'blur(20px) saturate(1.5)',
-      borderBottom:'1px solid rgba(79,110,247,0.08)',
+      background: scrolled ? 'rgba(10,13,28,0.88)' : 'rgba(10,14,32,0.55)',
+      backdropFilter:'blur(24px) saturate(1.8) brightness(0.85)',
+      borderBottom:'1px solid rgba(100,130,255,0.12)',
       transition:'background 300ms'
     }}>
       {/* Logo */}
@@ -40,7 +41,7 @@ function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode }) {
           <rect x="20" y="8" width="5" height="24" rx="2.5" fill="#4F6EF7"/>
           <circle cx="14.5" cy="20" r="3" fill="#00D4AA"/>
         </svg>
-        <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>neuria</span>
+        <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>NeuriaN</span>
       </div>
 
       {/* Desktop links */}
@@ -103,13 +104,13 @@ function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode }) {
           }
         </button>
 
-        <button onClick={() => go('contact')} style={{
+        <button onClick={() => gotoForm()} style={{
           background:'none',border:'1px solid #252836',borderRadius:999,
           padding:'8px 18px',cursor:'pointer',fontSize:13,fontWeight:500,
           color:'#BEC4E0',fontFamily:"'DM Sans',sans-serif",transition:'all 200ms'
         }} className="btn-ghost-nav">{t.more}</button>
 
-        <button onClick={() => go('contact')} style={{
+        <button onClick={() => gotoForm()} style={{
           background:'#4F6EF7',border:'none',borderRadius:999,
           padding:'9px 20px',cursor:'pointer',fontSize:13,fontWeight:600,
           color:'#fff',fontFamily:"'DM Sans',sans-serif",transition:'all 220ms',

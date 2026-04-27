@@ -1,6 +1,7 @@
 
-function SobreNosotrosPage({ setPage }) {
+function SobreNosotrosPage({ setPage, goToContact }) {
   const go = (id) => { setPage(id); window.scrollTo(0,0); };
+  const gotoForm = goToContact || (() => gotoForm());
 
   const values = [
     { icon:'🎯', title:'Orientados a resultados', desc:'No nos interesa la tecnología por la tecnología. Nos interesa que tu negocio funcione mejor, gane más tiempo y pierda menos clientes.' },
@@ -10,7 +11,7 @@ function SobreNosotrosPage({ setPage }) {
   ];
 
   const milestones = [
-    { year:'2021', event:'Fundación de Neuria en Barcelona con el objetivo de democratizar la automatización para pymes.' },
+    { year:'2021', event:'Fundación de NeuriaN en Barcelona con el objetivo de democratizar la automatización para pymes.' },
     { year:'2022', event:'Primeros 30 clientes en el sector sanitario. Lanzamiento del sistema de reservas por WhatsApp.' },
     { year:'2023', event:'Expansión a 6 sectores. Superamos las 10.000 citas automatizadas al mes.' },
     { year:'2024', event:'Implementación de modelos de IA propios. 150 empresas automatizadas en España y Latinoamérica.' },
@@ -18,7 +19,7 @@ function SobreNosotrosPage({ setPage }) {
   ];
 
   const team = [
-    { name:'Marc Puig', role:'CEO & Co-fundador', desc:'Antes de fundar Neuria, Marc gestionaba operaciones en una cadena de clínicas dentales. Vio en primera persona cuánto tiempo se perdía en tareas que una máquina podía hacer mejor.', init:'MP', color:'#4F6EF7' },
+    { name:'Marc Puig', role:'CEO & Co-fundador', desc:'Antes de fundar NeuriaN, Marc gestionaba operaciones en una cadena de clínicas dentales. Vio en primera persona cuánto tiempo se perdía en tareas que una máquina podía hacer mejor.', init:'MP', color:'#4F6EF7' },
     { name:'Cristina Llopis', role:'CTO & Co-fundadora', desc:'Ingeniera de software con 10 años automatizando procesos en startups de alto crecimiento. Traduce necesidades de negocio en sistemas que realmente funcionan.', init:'CL', color:'#00D4AA' },
     { name:'Javier Moreno', role:'Head of Implementation', desc:'Ex-consultor de operaciones. Ha implementado más de 200 sistemas de automatización en sectores que van desde la salud hasta el retail.', init:'JM', color:'#7B96FF' },
   ];
@@ -37,12 +38,12 @@ function SobreNosotrosPage({ setPage }) {
                 <span style={{background:'linear-gradient(135deg,#7B96FF,#00D4AA)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>vivimos el problema</span>
               </h1>
               <p style={{fontSize:17,color:'#7A80A0',lineHeight:1.8,marginBottom:20}}>
-                Neuria nació en 2021 cuando Marc, nuestro CEO, gestionaba las operaciones de una cadena de clínicas dentales en Barcelona. Cada día veía lo mismo: el equipo de recepción saturado de llamadas, citas perdidas por no poder coger el teléfono, y horas invertidas en tareas que no aportaban valor real a los pacientes.
+                NeuriaN nació en 2021 cuando Marc, nuestro CEO, gestionaba las operaciones de una cadena de clínicas dentales en Barcelona. Cada día veía lo mismo: el equipo de recepción saturado de llamadas, citas perdidas por no poder coger el teléfono, y horas invertidas en tareas que no aportaban valor real a los pacientes.
               </p>
               <p style={{fontSize:17,color:'#7A80A0',lineHeight:1.8,marginBottom:32}}>
                 Junto a Cristina, buscaron una solución. No encontraron ninguna que fuera práctica, asequible y que realmente funcionara para una empresa mediana. Así que la construyeron.
               </p>
-              <button onClick={() => go('contact')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:15,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
+              <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:15,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
                 Habla con el equipo →
               </button>
             </div>
@@ -134,7 +135,7 @@ function SobreNosotrosPage({ setPage }) {
         <div className="container">
           <div style={{textAlign:'center',marginBottom:56}}>
             <div className="section-label">El equipo</div>
-            <h2 className="section-title">Las personas detrás de Neuria</h2>
+            <h2 className="section-title">Las personas detrás de NeuriaN</h2>
             <p className="section-sub mx-auto">No somos un equipo de ingenieros desconectados de la realidad. Venimos del mundo de los negocios y entendemos tus problemas porque los hemos vivido.</p>
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:20}} className="test-grid">
@@ -154,8 +155,8 @@ function SobreNosotrosPage({ setPage }) {
       <section style={{padding:'80px 0',background:'#0D0F18',borderTop:'1px solid #1E2235'}}>
         <div className="container" style={{textAlign:'center'}}>
           <h2 className="section-title" style={{marginBottom:16}}>¿Quieres conocernos?</h2>
-          <p style={{fontSize:16,color:'#7A80A0',marginBottom:32,maxWidth:480,margin:'0 auto 32px'}}>Una llamada de 30 minutos para ver si Neuria encaja con tu negocio. Sin compromiso, sin presión.</p>
-          <button onClick={() => go('contact')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'16px 32px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:16,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
+          <p style={{fontSize:16,color:'#7A80A0',marginBottom:32,maxWidth:480,margin:'0 auto 32px'}}>Una llamada de 30 minutos para ver si NeuriaN encaja con tu negocio. Sin compromiso, sin presión.</p>
+          <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'16px 32px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:16,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
             Habla con nosotros →
           </button>
         </div>

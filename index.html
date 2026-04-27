@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neuria — Automatización con IA para tu negocio</title>
+<title>NeuriaN — Automatización con IA para tu negocio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -19,11 +19,148 @@ a{color:inherit;text-decoration:none}
 p{text-wrap:pretty}
 ::selection{background:rgba(79,110,247,0.3);color:#fff}
 
-/* Light mode overrides */
-body.light nav{background:rgba(244,245,250,0.92) !important;border-bottom-color:rgba(79,110,247,0.15) !important}
-body.light footer{background:#E8EAF4 !important;border-top-color:#D4D6E8 !important}
-body.light section{background:#F4F5FA !important}
-body.light .section-title{color:#1A1C2E !important}
+/* ── LIGHT MODE ─────────────────────────────────────────── */
+body.light{background:#F2F3FA;color:#2D3048}
+
+/* Nav */
+body.light nav{
+  background:rgba(220,225,248,0.7) !important;
+  backdrop-filter:blur(24px) saturate(1.8) brightness(1.05) !important;
+  border-bottom-color:rgba(79,110,247,0.18) !important;
+  box-shadow:0 1px 0 rgba(79,110,247,0.08) !important;
+}
+/* Nav link buttons */
+body.light nav button[style*="color: rgb(120, 128, 160)"],
+body.light nav button{color:#4A4E6B}
+/* Active nav link */
+body.light nav button[style*="color: rgb(240, 242, 255)"]{color:#1A1C2E !important}
+/* Nav wordmark */
+body.light nav span[style*="color"]{color:#1A1C2E !important}
+/* Ghost btn */
+body.light .btn-ghost-nav{color:#4A4E6B !important;border-color:#C5C8DF !important}
+
+/* Section backgrounds alternation */
+body.light section[style*="background: rgb(13, 15, 24)"],
+body.light section[style*="background:#0D0F18"],
+body.light div[style*="background: rgb(13, 15, 24)"]{background:#E8EAF5 !important}
+body.light section[style*="background: rgb(16, 19, 28)"],
+body.light section[style*="background:#10131C"],
+body.light div[style*="background: rgb(16, 19, 28)"]{background:#EDEEF8 !important}
+body.light section[style*="background: rgb(8, 9, 16)"],
+body.light section[style*="background:#080910"],
+body.light div[style*="background: rgb(8, 9, 16)"]{background:#F2F3FA !important}
+
+/* Section label */
+body.light .section-label{color:#3A55D4}
+body.light .section-label::before{background:#3A55D4}
+
+/* Section title */
+body.light .section-title{color:#111228 !important}
+
+/* Section sub */
+body.light .section-sub{color:#4A4E6B !important}
+
+/* Generic text color overrides */
+body.light [style*="color: rgb(240, 242, 255)"],
+body.light [style*="color: #F0F2FF"]{color:#111228 !important}
+body.light [style*="color: rgb(190, 196, 224)"],
+body.light [style*="color: #BEC4E0"]{color:#2D3048 !important}
+body.light [style*="color: rgb(122, 128, 160)"],
+body.light [style*="color: #7A80A0"]{color:#555972 !important}
+body.light [style*="color: rgb(74, 80, 112)"],
+body.light [style*="color: #4A5070"]{color:#777B98 !important}
+
+/* Card backgrounds */
+body.light [style*="background: rgb(16, 19, 28)"],
+body.light [style*="background: rgb(24, 28, 40)"]{background:#fff !important}
+body.light [style*="background: rgb(30, 34, 53)"]{background:#F0F1FA !important}
+
+/* Card borders */
+body.light [style*="border: 1px solid rgb(37, 42, 63)"],
+body.light [style*="border: 1px solid #252A3F"]{border-color:#D0D3EB !important}
+body.light [style*="border-top: 1px solid rgb(30, 34, 53)"],
+body.light [style*="border-bottom: 1px solid rgb(30, 34, 53)"]{border-color:#D0D3EB !important}
+body.light [style*="border-bottom: 1px solid rgb(37, 42, 63)"]{border-color:#D0D3EB !important}
+
+/* Proof bar */
+body.light div[style*="border-top: 1px solid rgb(30, 34, 53)"],
+body.light div[style*="border-bottom: 1px solid rgb(30, 34, 53)"]{
+  border-color:#CACDE3 !important;
+}
+
+/* Dividers */
+body.light [style*="background: rgb(37, 42, 63)"],
+body.light [style*="background:#252A3F"]{background:#CACDE3 !important}
+
+/* Hero mesh / glow — keep subtle in light */
+body.light [style*="radial-gradient(ellipse 80% 60% at 60% 40%"]{
+  opacity:0.4;
+}
+
+/* Chat bubble dark bg */
+body.light [style*="background: rgb(24, 28, 40)"]{background:#F0F1FA !important}
+
+/* Pain / feature rows border-left */
+body.light [style*="border-left: 3px solid rgba(239, 68, 68, 0.5)"]{border-left-color:rgba(239,68,68,0.6) !important}
+
+/* Step blocks */
+body.light [style*="background: rgb(8, 9, 16)"]{background:#E8EAF5 !important}
+
+/* Mono text */
+body.light [style*="font-family: \"JetBrains Mono\""]{color:#555972}
+
+/* Footer */
+body.light footer{background:#E4E6F4 !important;border-top-color:#CACDE3 !important}
+body.light footer [style*="color: rgb(122, 128, 160)"]{color:#555972 !important}
+body.light footer [style*="color: rgb(74, 80, 112)"]{color:#777B98 !important}
+body.light footer [style*="background: rgb(16, 19, 28)"]{background:#F0F1FA !important}
+body.light footer [style*="border: 1px solid rgb(37, 42, 63)"]{border-color:#CACDE3 !important}
+
+/* Tweaks panel in light */
+body.light #tweaks-panel{background:#fff;border-color:#D0D3EB;color:#2D3048}
+body.light #tweaks-panel h3{color:#111228}
+body.light .tw-label{color:#777B98}
+body.light .tw-btn{background:#F0F1FA;border-color:#D0D3EB;color:#555972}
+body.light .tw-btn.on,.tw-btn:hover{background:rgba(79,110,247,0.1);border-color:rgba(79,110,247,0.4);color:#3A55D4}
+
+/* Form inputs in light */
+body.light input,body.light select,body.light textarea{
+  color-scheme:light;background:#F8F8FD !important;
+  border-color:#C5C8DF !important;color:#111228 !important;
+}
+body.light input::placeholder,body.light textarea::placeholder{color:#9194AD}
+
+/* Lang picker dropdown */
+body.light div[style*="background: rgb(16, 19, 28)"][style*="border-radius: 12px"]{
+  background:#fff !important;border-color:#D0D3EB !important;
+}
+
+/* Proof numbers — keep brand colors */
+body.light [style*="color: rgb(123, 150, 255)"]{color:#3A55D4 !important}
+body.light [style*="color: rgb(0, 212, 170)"]{color:#007D60 !important}
+
+/* Teal text legibility in light */
+body.light .section-label,
+body.light [style*="color: rgb(0, 212, 170)"][style*="font-size: 11px"],
+body.light [style*="color: rgb(0, 212, 170)"][style*="font-size: 12px"]{color:#007D60 !important}
+
+/* Hero gradient text — replace light-on-light with dark gradient in light mode */
+body.light [style*="linear-gradient(135deg, rgb(240, 242, 255)"],
+body.light [style*="linear-gradient(135deg, #F0F2FF"],
+body.light span[style*="-webkit-text-fill-color: transparent"][style*="F0F2FF"]{
+  background: linear-gradient(135deg, #2B3EA8 0%, #3A55D4 50%, #007D60 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* CTA section gradient text in light mode */
+body.light span[style*="-webkit-text-fill-color: transparent"][style*="7B96FF"]{
+  background: linear-gradient(135deg, #2B3EA8, #007D60) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
 
 .container{max-width:1160px;margin:0 auto;padding:0 5%}
 .section-label{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7B96FF;margin-bottom:20px}
@@ -38,6 +175,27 @@ body.light .section-title{color:#1A1C2E !important}
 @keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
 .page-enter{animation:fade-up 0.4s cubic-bezier(0.16,1,0.3,1) both}
+
+/* Mobile case selector show/hide */
+.mobile-case-select { display: none; }
+.desktop-case-select { display: grid; }
+@media(max-width:700px){
+  .mobile-case-select { display: block; }
+  .desktop-case-select { display: none !important; }
+}
+
+/* Floating WhatsApp */
+#wa-float {
+  position: fixed; bottom: 24px; left: 24px; z-index: 1000;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: transform 220ms, box-shadow 220ms;
+  animation: wa-pop 0.5s cubic-bezier(0.16,1,0.3,1) 1.5s both;
+}
+#wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+@keyframes wa-pop { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
 
 /* Responsive helpers */
 @media(max-width:900px){
@@ -60,6 +218,7 @@ body.light .section-title{color:#1A1C2E !important}
   .form-row{grid-template-columns:1fr !important}
   .fc-2{display:none !important}
   .two-col{gap:40px !important}
+  .mobile-form-note{display:block !important}
 }
 
 /* Tweaks panel */
@@ -87,6 +246,13 @@ input::placeholder,textarea::placeholder{color:#4A5070}
 
 <div id="root"></div>
 
+<!-- Floating WhatsApp button -->
+<button id="wa-float" onclick="window.open('https://wa.me/34695401972?text=Hola,%20me%20gustaría%20pedir%20información%20sobre%20NeuriaN','_blank')" title="Escríbenos por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</button>
+
 <!-- Tweaks panel (outside React) -->
 <div id="tweaks-panel">
   <h3>Tweaks <button class="tw-close" id="tw-close-btn">✕</button></h3>
@@ -101,8 +267,8 @@ input::placeholder,textarea::placeholder{color:#4A5070}
   <div class="tw-group">
     <div class="tw-label">Modo de color</div>
     <div class="tw-opts">
-      <button class="tw-btn on" data-tw="mode" data-val="dark">Oscuro</button>
-      <button class="tw-btn" data-tw="mode" data-val="light">Claro</button>
+      <button class="tw-btn" data-tw="mode" data-val="dark">Oscuro</button>
+      <button class="tw-btn on" data-tw="mode" data-val="light">Claro</button>
     </div>
   </div>
   <div class="tw-group">
@@ -119,6 +285,7 @@ input::placeholder,textarea::placeholder{color:#4A5070}
 </div>
 
 <script src="i18n.js"></script>
+<script type="text/babel" src="Illustrations.jsx"></script>
 <script type="text/babel" src="Nav.jsx"></script>
 <script type="text/babel" src="Footer.jsx"></script>
 <script type="text/babel" src="HomePage.jsx"></script>
@@ -131,7 +298,7 @@ input::placeholder,textarea::placeholder{color:#4A5070}
 <script type="text/babel">
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "lang": "es",
-  "mode": "dark",
+  "mode": "light",
   "page": "home"
 }/*EDITMODE-END*/;
 
@@ -191,11 +358,23 @@ function App() {
   const pages = { home: HomePage, services: ServiciosPage, about: SobreNosotrosPage, cases: CasosPage, blog: BlogPage, contact: ContactoPage };
   const PageComponent = pages[page] || HomePage;
 
+  // Helper: go to contact and scroll to form
+  const goToContactForm = React.useCallback(() => {
+    setPage('contact');
+    setTimeout(() => {
+      const el = document.getElementById('contact-form');
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 150);
+  }, []);
+
   return (
     <div>
-      <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} goToContact={goToContactForm} />
       <main style={{paddingTop:0}} className="page-enter" key={page}>
-        <PageComponent setPage={setPage} lang={lang} />
+        <PageComponent setPage={setPage} lang={lang} goToContact={goToContactForm} />
       </main>
       <Footer setPage={setPage} lang={lang} />
     </div>
