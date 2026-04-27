@@ -63,7 +63,7 @@ function BlogPage({ setPage }) {
       date: '11 marzo 2025',
       readTime: '5 min',
       color: '#7B96FF',
-      content: `La automatización tiene un coste. Como cualquier inversión empresarial, antes de comprometerte necesitas saber qué retorno puedes esperar y en cuánto tiempo.\n\n**Los tres tipos de ROI que debes medir**\n\nROI directo en tiempo: Cada hora que tu equipo deja de dedicar a tareas administrativas tiene un valor. Si tu recepcionista cobra 15€/hora y automatizar le ahorra 2 horas al día, el ahorro mensual solo en ese concepto es de 600€.\n\nROI en ingresos recuperados: Cada cita perdida por no coger el teléfono es un ingreso que no entra. Si pierdes 3 citas al día con un ticket medio de 60€, son 180€ diarios — más de 4.000€ mensuales en ingresos que se escapan.\n\nROI en reducción de no-shows: Si tienes 20 citas al día y el 20% no aparece, son 4 citas perdidas. A 60€ de media, son 240€ diarios. Reducir los no-shows un 40% supone recuperar casi 100€ al día.\n\n**Un ejemplo real**\nUna clínica dental con 25 citas al día, ticket medio de 80€ y una tasa de no-show del 18%. NeuriaN les costó 350€/mes. Los resultados: −40% no-shows (ahorro de 1.440€/mes), +12% más citas cerradas (960€/mes). ROI total: 290% en el primer mes.`
+      content: `La automatización tiene un coste. Como cualquier inversión empresarial, antes de comprometerte necesitas saber qué retorno puedes esperar y en cuánto tiempo.\n\n**Los tres tipos de ROI que debes medir**\n\nROI directo en tiempo: Cada hora que tu equipo deja de dedicar a tareas administrativas tiene un valor. Si tu recepcionista cobra 15€/hora y automatizar le ahorra 2 horas al día, el ahorro mensual solo en ese concepto es de 600€.\n\nROI en ingresos recuperados: Cada cita perdida por no coger el teléfono es un ingreso que no entra. Si pierdes 3 citas al día con un ticket medio de 60€, son 180€ diarios — más de 4.000€ mensuales en ingresos que se escapan.\n\nROI en reducción de no-shows: Si tienes 20 citas al día y el 20% no aparece, son 4 citas perdidas. A 60€ de media, son 240€ diarios. Reducir los no-shows un 40% supone recuperar casi 100€ al día.\n\n**Un ejemplo real**\nUna clínica dental con 25 citas al día, ticket medio de 80€ y una tasa de no-show del 18%. Neuria les costó 350€/mes. Los resultados: −40% no-shows (ahorro de 1.440€/mes), +12% más citas cerradas (960€/mes). ROI total: 290% en el primer mes.`
     },
   ];
 
@@ -96,7 +96,7 @@ function BlogPage({ setPage }) {
             <div style={{marginTop:48,padding:'28px 32px',background:'#10131C',border:'1px solid #252A3F',borderRadius:20,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:16}}>
               <div>
                 <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:17,fontWeight:700,color:'#F0F2FF',marginBottom:6}}>¿Te ha resultado útil?</div>
-                <p style={{fontSize:14,color:'#7A80A0'}}>Descubre cómo NeuriaN puede implementar esto en tu negocio.</p>
+                <p style={{fontSize:14,color:'#7A80A0'}}>Descubre cómo Neuria puede implementar esto en tu negocio.</p>
               </div>
               <button onClick={() => go('contact')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'12px 24px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:14,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif",whiteSpace:'nowrap'}}>
                 Habla con nosotros →

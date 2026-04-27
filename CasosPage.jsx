@@ -3,19 +3,6 @@ function CasosPage({ setPage, goToContact }) {
   const go = (id) => { setPage(id); window.scrollTo(0,0); };
   const gotoForm = goToContact || (() => go('contact'));
   const [active, setActive] = React.useState(0);
-  const detailRef = React.useRef(null);
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const selectCase = (i) => {
-    setActive(i);
-    setMobileOpen(false);
-    setTimeout(() => {
-      if (detailRef.current) {
-        const top = detailRef.current.getBoundingClientRect().top + window.scrollY - 90;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    }, 50);
-  };
 
   const cases = [
     {
@@ -86,7 +73,7 @@ function CasosPage({ setPage, goToContact }) {
         ingresosMes: 4100,
         payback: '10 días'
       },
-      quote: 'Perdíamos 30-40 socios al mes sin saber por qué. Con NeuriaN tenemos visibilidad total y el sistema llama a quien está a punto de marcharse antes de que lo haga.',
+      quote: 'Perdíamos 30-40 socios al mes sin saber por qué. Con Neuria tenemos visibilidad total y el sistema llama a quien está a punto de marcharse antes de que lo haga.',
       author: 'Roberto S. · Director FitLife Club',
       illu: 'gym', pipeline: ['Socio inactivo','Detección automática','Mensaje reactivación','Respuesta socio','Renovación confirmada']
     },
@@ -176,40 +163,9 @@ function CasosPage({ setPage, goToContact }) {
       {/* CASE SELECTOR — compact grid */}
       <section style={{padding:'60px 0 0',background:'#0D0F18'}}>
         <div className="container">
-          {/* Mobile dropdown */}
-          <div className="mobile-case-select" style={{marginBottom:16}}>
-            <button onClick={() => setMobileOpen(v=>!v)} style={{
-              width:'100%',display:'flex',alignItems:'center',justifyContent:'space-between',
-              padding:'14px 18px',borderRadius:14,background:'#10131C',border:'1px solid #252A3F',
-              cursor:'pointer',fontFamily:"'DM Sans',sans-serif",fontSize:14,fontWeight:600,color:'#F0F2FF'
-            }}>
-              <div style={{display:'flex',alignItems:'center',gap:10}}>
-                <span style={{fontSize:20}}>{cases[active].icon}</span>
-                {cases[active].company}
-              </div>
-              <span style={{color:'#7A80A0',fontSize:12}}>{mobileOpen ? '▲' : '▼'}</span>
-            </button>
-            {mobileOpen && (
-              <div style={{marginTop:4,background:'#10131C',border:'1px solid #252A3F',borderRadius:14,overflow:'hidden'}}>
-                {cases.map((cs,i) => (
-                  <button key={i} onClick={() => selectCase(i)} style={{
-                    display:'flex',alignItems:'center',gap:12,padding:'12px 18px',
-                    width:'100%',background: active===i ? 'rgba(79,110,247,0.1)' : 'none',
-                    border:'none',borderBottom:'1px solid #1E2235',cursor:'pointer',
-                    fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:600,
-                    color: active===i ? '#7B96FF' : '#BEC4E0',textAlign:'left'
-                  }}>
-                    <span style={{fontSize:16}}>{cs.icon}</span>{cs.company}
-                    <span style={{fontSize:11,color:'#4A5070',marginLeft:'auto'}}>{cs.sector}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          {/* Desktop grid selector */}
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,marginBottom:40}} className="sectors-grid desktop-case-select">
+          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12,marginBottom:40}} className="sectors-grid">
             {cases.map((cs,i) => (
-              <button key={i} onClick={() => selectCase(i)} style={{
+              <button key={i} onClick={() => setActive(i)} style={{
                 display:'flex',alignItems:'center',gap:14,padding:'16px 20px',borderRadius:16,
                 background: active===i ? `rgba(${colorRgb(cs.color)},0.1)` : '#10131C',
                 border: active===i ? `1px solid ${cs.color}50` : '1px solid #252A3F',
@@ -229,7 +185,7 @@ function CasosPage({ setPage, goToContact }) {
       {/* CASE DETAIL */}
       <section style={{padding:'0 0 80px',background:'#0D0F18'}}>
         <div className="container">
-          <div ref={detailRef} style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:24,overflow:'hidden',boxShadow:'0 24px 64px rgba(0,0,0,0.4)'}}>
+          <div style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:24,overflow:'hidden',boxShadow:'0 24px 64px rgba(0,0,0,0.4)'}}>
 
             {/* Header */}
             <div style={{padding:'32px 40px',background:'#181C28',borderBottom:'1px solid #1E2235',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:20}}>
@@ -270,7 +226,7 @@ function CasosPage({ setPage, goToContact }) {
 
               {/* Automation pipeline */}
               <div style={{padding:'20px 24px',background:'#181C28',border:'1px solid #1E2235',borderRadius:16,marginBottom:40}}>
-                <div style={{fontSize:11,fontWeight:600,color:'#7A80A0',fontFamily:"'JetBrains Mono',monospace",letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:20,display:'flex',alignItems:'center',gap:8}}><span style={{width:7,height:7,borderRadius:'50%',background:'#00D4AA',display:'inline-block'}}/>Flujo automatizado — haz clic en cada paso</div>
+                <div style={{fontSize:11,fontWeight:600,color:'#7A80A0',fontFamily:"'JetBrains Mono',monospace",letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:16}}>Flujo automatizado</div>
                 <IlluPipeline steps={c.pipeline}/>
               </div>
 
@@ -385,7 +341,7 @@ function CasosPage({ setPage, goToContact }) {
       <section style={{padding:'80px 0',background:'#0D0F18',borderTop:'1px solid #1E2235'}}>
         <div className="container" style={{textAlign:'center'}}>
           <h2 className="section-title" style={{marginBottom:16}}>Tu empresa puede ser el próximo caso</h2>
-          <p style={{fontSize:16,color:'#7A80A0',marginBottom:32,maxWidth:500,margin:'0 auto 32px'}}>Una demo gratuita de 30 minutos para ver qué resultados puede conseguir tu negocio con NeuriaN.</p>
+          <p style={{fontSize:16,color:'#7A80A0',marginBottom:32,maxWidth:500,margin:'0 auto 32px'}}>Una demo gratuita de 30 minutos para ver qué resultados puede conseguir tu negocio con Neuria.</p>
           <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'16px 32px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:16,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif"}}>
             Quiero resultados como estos →
           </button>

@@ -16,7 +16,7 @@ function Footer({ setPage, lang }) {
                 <rect x="20" y="8" width="5" height="24" rx="2.5" fill="#4F6EF7"/>
                 <circle cx="14.5" cy="20" r="3" fill="#00D4AA"/>
               </svg>
-              <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>NeuriaN</span>
+              <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>neuria</span>
             </div>
             <p style={{fontSize:14,color:'#7A80A0',lineHeight:1.75,maxWidth:300}}>{t.tagline}</p>
             <div style={{display:'flex',gap:12,marginTop:20}}>
@@ -52,8 +52,8 @@ function Footer({ setPage, lang }) {
           <div>
             <h4 style={{fontSize:13,fontWeight:600,color:'#F0F2FF',marginBottom:16,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>{t.contact_title}</h4>
             {[
-              { icon: '✉', text: 'info@neurian.es' },
-              { icon: '📞', text: '+34 695 40 19 72' },
+              { icon: '✉', text: 'hola@neuria.io' },
+              { icon: '📞', text: '+34 900 123 456' },
               { icon: '📍', text: 'Barcelona, España' }
             ].map((c, i) => (
               <div key={i} style={{display:'flex',alignItems:'center',gap:10,fontSize:14,color:'#7A80A0',marginBottom:12}}>
@@ -68,7 +68,7 @@ function Footer({ setPage, lang }) {
 
         {/* Bottom bar */}
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',paddingTop:28,borderTop:'1px solid #1E2235',fontSize:13,color:'#4A5070',flexWrap:'wrap',gap:12}}>
-          <span>© {new Date().getFullYear()} NeuriaN. {t.rights}</span>
+          <span>© {new Date().getFullYear()} Neuria. {t.rights}</span>
           <div style={{display:'flex',gap:20}}>
             {[t.legal, t.privacy, t.cookies].map(l => (
               <a key={l} href="#" style={{color:'#4A5070',transition:'color 200ms'}}>{l}</a>

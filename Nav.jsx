@@ -41,7 +41,7 @@ function Nav({ page, setPage, lang, setLang, darkMode, setDarkMode, goToContact 
           <rect x="20" y="8" width="5" height="24" rx="2.5" fill="#4F6EF7"/>
           <circle cx="14.5" cy="20" r="3" fill="#00D4AA"/>
         </svg>
-        <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>NeuriaN</span>
+        <span style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF',letterSpacing:'-0.03em'}}>neuria</span>
       </div>
 
       {/* Desktop links */}
