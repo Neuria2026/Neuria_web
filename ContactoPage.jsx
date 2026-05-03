@@ -9,10 +9,39 @@ function ContactoPage() {
 
   const update = (k, v) => setForm(f => ({...f, [k]: v}));
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email) return;
-    setSent(true);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch('https://formspree.io/f/mjglykqd', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          sector: form.sector,
+          message: form.message,
+          _subject: `Demo NeuriaN - ${form.company || form.name}`
+        })
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error || 'No se pudo enviar. Inténtalo de nuevo o escríbenos a info@neurian.es');
+      }
+    } catch (err) {
+      setError('Error de conexión. Escríbenos a info@neurian.es');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Simulated calendar data
@@ -40,7 +69,7 @@ function ContactoPage() {
             <span style={{background:'linear-gradient(135deg,#7B96FF,#00D4AA)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>Encontramos la solución.</span>
           </h1>
           <p style={{fontSize:17,color:'#7A80A0',lineHeight:1.75,maxWidth:480,margin:'0 auto'}}>
-            Una llamada de 30 minutos, sin compromiso, para ver si Neuria encaja con tu negocio.
+            Una llamada de 30 minutos, sin compromiso, para ver si NeuriaN encaja con tu negocio.
           </p>
         </div>
       </section>
@@ -52,6 +81,12 @@ function ContactoPage() {
             <div>
               <h2 style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:'clamp(24px,3vw,36px)',fontWeight:800,letterSpacing:'-0.03em',color:'#F0F2FF',marginBottom:16}}>¿Qué pasa después de que contactas?</h2>
               <p style={{fontSize:15,color:'#7A80A0',lineHeight:1.75,marginBottom:36}}>Sin presión de ventas, sin presentaciones interminables. Una conversación honesta.</p>
+
+              {/* Mobile CTA note */}
+              <div className="mobile-form-note" style={{display:'none',marginBottom:24,padding:'14px 18px',background:'rgba(79,110,247,0.08)',border:'1px solid rgba(79,110,247,0.2)',borderRadius:14}}>
+                <div style={{fontSize:13,fontWeight:600,color:'#7B96FF',marginBottom:4}}>👇 Rellena el formulario más abajo</div>
+                <div style={{fontSize:12,color:'#7A80A0',lineHeight:1.6}}>Cuéntanos sobre tu negocio y te respondemos en menos de 24h.</div>
+              </div>
 
               {[
                 { n:'01', title:'Análisis de tu situación', desc:'En la primera llamada, te hacemos las preguntas correctas para entender tus cuellos de botella y qué procesos pueden automatizarse.' },
@@ -71,8 +106,8 @@ function ContactoPage() {
               <div style={{marginTop:32,padding:'24px 26px',background:'#10131C',border:'1px solid #252A3F',borderRadius:20}}>
                 <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:15,fontWeight:700,color:'#F0F2FF',marginBottom:16}}>También puedes contactarnos directamente</div>
                 {[
-                  { icon:'✉', label:'Email', value:'hola@neuria.io' },
-                  { icon:'📞', label:'Teléfono', value:'+34 900 123 456' },
+                  { icon:'✉', label:'Email', value:'info@neurian.es' },
+                  { icon:'📞', label:'Teléfono', value:'+34 695 40 19 72' },
                   { icon:'💬', label:'WhatsApp', value:'+34 612 345 678' },
                 ].map((c,i) => (
                   <div key={i} style={{display:'flex',alignItems:'center',gap:12,marginBottom: i<2 ? 12 : 0,fontSize:14,color:'#BEC4E0'}}>
@@ -159,9 +194,12 @@ function ContactoPage() {
                           style={{width:'100%',background:'#181C28',border:'1px solid #252A3F',borderRadius:12,padding:'12px 16px',fontFamily:"'DM Sans',sans-serif",fontSize:14,color:'#F0F2FF',outline:'none',resize:'none',height:88}}/>
                       </div>
 
-                      <button type="submit" style={{width:'100%',padding:16,fontSize:16,fontWeight:700,background:'#4F6EF7',border:'none',borderRadius:14,cursor:'pointer',color:'#fff',fontFamily:"'DM Sans',sans-serif",letterSpacing:'-0.01em',marginBottom:14,transition:'all 220ms'}}>
-                        Enviar mensaje →
+                      <button type="submit" disabled={submitting} style={{width:'100%',padding:16,fontSize:16,fontWeight:700,background: submitting ? '#3A4A8F' : '#4F6EF7',border:'none',borderRadius:14,cursor: submitting ? 'wait' : 'pointer',color:'#fff',fontFamily:"'DM Sans',sans-serif",letterSpacing:'-0.01em',marginBottom:14,transition:'all 220ms',opacity: submitting ? 0.7 : 1}}>
+                        {submitting ? 'Enviando…' : 'Enviar mensaje →'}
                       </button>
+                      {error && (
+                        <div style={{padding:'12px 14px',background:'rgba(239,68,68,0.08)',border:'1px solid rgba(239,68,68,0.25)',borderRadius:10,marginBottom:12,fontSize:13,color:'#EF4444',textAlign:'center'}}>{error}</div>
+                      )}
                       <p style={{fontSize:12,color:'#4A5070',textAlign:'center',lineHeight:1.6}}>
                         Al enviar aceptas nuestra <a href="#" style={{color:'#7B96FF'}}>política de privacidad</a>. Nunca compartiremos tus datos.
                       </p>
@@ -234,7 +272,7 @@ function ContactoPage() {
                           <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:20,fontWeight:800,color:'#F0F2FF'}}>{selectedDay} de mayo · {selectedTime}h</div>
                           <div style={{fontSize:13,color:'#7A80A0',marginTop:4}}>Duración: 30 minutos · Google Meet</div>
                         </div>
-                        <p style={{fontSize:14,color:'#7A80A0',lineHeight:1.75}}>Recibirás un email de confirmación con el enlace a la videollamada. Hasta entonces, si tienes alguna pregunta, escríbenos a <span style={{color:'#7B96FF'}}>hola@neuria.io</span></p>
+                        <p style={{fontSize:14,color:'#7A80A0',lineHeight:1.75}}>Recibirás un email de confirmación con el enlace a la videollamada. Hasta entonces, si tienes alguna pregunta, escríbenos a <span style={{color:'#7B96FF'}}>info@neurian.es</span></p>
                       </div>
                     )}
                   </div>

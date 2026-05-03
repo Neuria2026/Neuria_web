@@ -90,7 +90,7 @@ function HomePage({ setPage, lang, goToContact }) {
                 <div style={{background:'#181C28',padding:'14px 18px',display:'flex',alignItems:'center',gap:10,borderBottom:'1px solid #1E2235'}}>
                   <div style={{width:34,height:34,borderRadius:'50%',background:'linear-gradient(135deg,#4F6EF7,#00D4AA)',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:14,fontWeight:800,color:'#fff',flexShrink:0}}>N</div>
                   <div>
-                    <div style={{fontSize:14,fontWeight:600,color:'#F0F2FF'}}>Asistente Neuria</div>
+                    <div style={{fontSize:14,fontWeight:600,color:'#F0F2FF'}}>Asistente NeuriaN</div>
                     <div style={{fontSize:11,color:'#00D4AA',display:'flex',alignItems:'center',gap:5}}>
                       <span style={{width:5,height:5,borderRadius:'50%',background:'#00D4AA',display:'inline-block'}}/>En línea ahora
                     </div>
@@ -252,6 +252,17 @@ function HomePage({ setPage, lang, goToContact }) {
             ))}
           </div>
         </div>
+
+        {/* Interactive pipeline — full width */}
+        <div className="container" style={{paddingBottom:80, paddingTop:40}}>
+          <div style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:20,padding:'28px 32px'}}>
+            <div style={{fontSize:10,color:'#4A5070',fontFamily:"'JetBrains Mono',monospace",marginBottom:20,textTransform:'uppercase',letterSpacing:'0.08em',display:'flex',alignItems:'center',gap:8}}>
+              <span style={{width:7,height:7,borderRadius:'50%',background:'#00D4AA',display:'inline-block'}}/>
+              Flujo automatizado en tiempo real — haz clic en cada paso
+            </div>
+            <IlluPipeline steps={['Solicitud','Verificación','Confirmación','Recordatorio','Post-visita']}/>
+          </div>
+        </div>
       </section>
 
       {/* BENEFICIOS */}
@@ -262,12 +273,19 @@ function HomePage({ setPage, lang, goToContact }) {
             <div className="section-label">Resultados reales</div>
             <h2 className="section-title">Lo que cambia en tu negocio</h2>
           </div>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}} className="benefits-grid">
+          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,alignItems:'stretch'}} className="benefits-grid">
             {benefits.map((b,i) => (
-              <div key={i} style={{background:'#10131C',border:`1px solid ${b.featured ? 'rgba(0,212,170,0.3)' : '#252A3F'}`,borderRadius:20,padding:30,transition:'all 220ms',position:'relative',overflow:'hidden'}}>
-                <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:38,fontWeight:900,letterSpacing:'-0.03em',lineHeight:1,marginBottom:8,color:b.color}}>{b.stat}</div>
-                <div style={{fontSize:16,fontWeight:600,color:'#F0F2FF',marginBottom:10}}>{b.label}</div>
-                <div style={{fontSize:14,color:'#7A80A0',lineHeight:1.7}}>{b.desc}</div>
+              <div key={i} style={{background:'#10131C',border:`1px solid ${b.featured ? 'rgba(0,212,170,0.3)' : '#252A3F'}`,borderRadius:20,padding:30,transition:'all 220ms',position:'relative',overflow:'hidden',display:'flex',flexDirection:'column'}}>
+                <div style={{flex:'0 0 auto',marginBottom:16,display:'flex',alignItems:'center',justifyContent:'center',minHeight:140}}>
+                  {i===0 && <IlluTimeSaved hours={3} label="horas/día recuperadas"/>}
+                  {i===1 && <IlluNoShows before={22} after={8}/>}
+                  {i===2 && <IlluBusiness freed={3}/>}
+                </div>
+                <div style={{flex:1,display:'flex',flexDirection:'column',justifyContent:'flex-end'}}>
+                  <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:38,fontWeight:900,letterSpacing:'-0.03em',lineHeight:1,marginBottom:8,color:b.color}}>{b.stat}</div>
+                  <div style={{fontSize:16,fontWeight:600,color:'#F0F2FF',marginBottom:10}}>{b.label}</div>
+                  <div style={{fontSize:14,color:'#7A80A0',lineHeight:1.7}}>{b.desc}</div>
+                </div>
               </div>
             ))}
           </div>
@@ -284,9 +302,12 @@ function HomePage({ setPage, lang, goToContact }) {
           </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}} className="sectors-grid">
             {sectors.map((s,i) => (
-              <div key={i} style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:18,padding:26,display:'flex',flexDirection:'column',gap:14,transition:'all 220ms',cursor:'default'}}>
-                <div style={{width:52,height:52,borderRadius:14,fontSize:22,display:'flex',alignItems:'center',justifyContent:'center',background:'rgba(79,110,247,0.1)',border:'1px solid rgba(79,110,247,0.2)'}}>{s.icon}</div>
-                <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:16,fontWeight:700,color:'#F0F2FF'}}>{s.name}</div>
+              <div key={i} style={{background:'#10131C',border:'1px solid #252A3F',borderRadius:18,padding:26,display:'flex',flexDirection:'column',gap:12,transition:'all 220ms',cursor:'default'}}>
+                <IlluSectorHero sector={['dental','estetica','gym','peluqueria','clinica','taller'][i]}/>
+                <div style={{display:'flex',alignItems:'center',gap:12}}>
+                  <div style={{width:40,height:40,borderRadius:12,fontSize:18,display:'flex',alignItems:'center',justifyContent:'center',background:'rgba(79,110,247,0.1)',border:'1px solid rgba(79,110,247,0.2)',flexShrink:0}}>{s.icon}</div>
+                  <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:15,fontWeight:700,color:'#F0F2FF'}}>{s.name}</div>
+                </div>
                 <div style={{fontSize:13,color:'#7A80A0',lineHeight:1.6}}>{s.pain}</div>
                 <div style={{display:'inline-flex',alignItems:'center',gap:6,padding:'5px 12px',borderRadius:999,fontSize:12,fontWeight:600,background:'rgba(0,212,170,0.06)',color:'#00D4AA',border:'1px solid rgba(0,212,170,0.2)',marginTop:'auto'}}>
                   ✓ {s.gain}
@@ -332,27 +353,44 @@ function HomePage({ setPage, lang, goToContact }) {
       <section style={{padding:'120px 0',background:'#10131C',position:'relative',overflow:'hidden'}}>
         <div style={{position:'absolute',inset:0,pointerEvents:'none',background:'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,110,247,0.1), transparent 55%), radial-gradient(ellipse 40% 40% at 80% 100%, rgba(0,212,170,0.06), transparent 55%)'}}/>
         <div className="container" style={{position:'relative',zIndex:1}}>
-          <div style={{textAlign:'center',maxWidth:640,margin:'0 auto'}}>
-            <div className="section-label">Empieza hoy</div>
-            <h2 style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:'clamp(38px,4.5vw,56px)',fontWeight:900,letterSpacing:'-0.04em',lineHeight:1.08,color:'#F0F2FF',marginBottom:22}}>
-              Tu negocio merece trabajar<br/>
-              <span style={{background:'linear-gradient(135deg,#7B96FF,#00D4AA)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>de forma inteligente</span>
-            </h2>
-            <p style={{fontSize:17,color:'#7A80A0',lineHeight:1.75,marginBottom:40}}>
-              Una demo gratuita de 30 minutos para ver cómo Neuria puede transformar la gestión de tu negocio.
-            </p>
-            <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap'}}>
-              <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'18px 36px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:17,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif",boxShadow:'0 0 0 0 rgba(79,110,247,0.4), 0 2px 8px rgba(79,110,247,0.3)',transition:'all 220ms'}}>
-                Pide tu demo gratis →
-              </button>
-              <button onClick={() => go('services')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'15px 30px',borderRadius:999,background:'transparent',border:'1px solid #252A3F',cursor:'pointer',fontSize:16,fontWeight:600,color:'#BEC4E0',fontFamily:"'DM Sans',sans-serif",transition:'all 220ms'}}>
-                Explorar servicios
-              </button>
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,alignItems:'center'}} className="two-col">
+            <div style={{textAlign:'center'}}>
+              <div className="section-label" style={{justifyContent:'center'}}>Empieza hoy</div>
+              <h2 style={{fontFamily:"'Plus Jakarta Sans',sans-serif",fontSize:'clamp(38px,4.5vw,56px)',fontWeight:900,letterSpacing:'-0.04em',lineHeight:1.08,color:'#F0F2FF',marginBottom:22}}>
+                Tu negocio merece trabajar<br/>
+                <span style={{background:'linear-gradient(135deg,#7B96FF,#00D4AA)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>de forma inteligente</span>
+              </h2>
+              <p style={{fontSize:17,color:'#7A80A0',lineHeight:1.75,marginBottom:40}}>
+                Una demo gratuita de 30 minutos para ver cómo NeuriaN puede transformar la gestión de tu negocio.
+              </p>
+              <div style={{display:'flex',gap:12,justifyContent:'center',flexWrap:'wrap',marginBottom:24}}>
+                <button onClick={() => gotoForm()} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'18px 36px',borderRadius:999,background:'#4F6EF7',border:'none',cursor:'pointer',fontSize:17,fontWeight:700,color:'#fff',fontFamily:"'DM Sans',sans-serif",boxShadow:'0 0 0 0 rgba(79,110,247,0.4), 0 2px 8px rgba(79,110,247,0.3)',transition:'all 220ms'}}>
+                  Pide tu demo gratis →
+                </button>
+                <button onClick={() => go('services')} style={{display:'inline-flex',alignItems:'center',gap:8,padding:'15px 30px',borderRadius:999,background:'transparent',border:'1px solid #252A3F',cursor:'pointer',fontSize:16,fontWeight:600,color:'#BEC4E0',fontFamily:"'DM Sans',sans-serif",transition:'all 220ms'}}>
+                  Explorar servicios
+                </button>
+              </div>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:24,fontSize:13,color:'#7A80A0',flexWrap:'wrap'}}>
+                {['Sin coste inicial','Sin permanencia','Soporte incluido'].map(t => (
+                  <span key={t} style={{display:'flex',alignItems:'center',gap:6}}><span style={{color:'#00D4AA'}}>✓</span>{t}</span>
+                ))}
+              </div>
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:24,marginTop:32,fontSize:13,color:'#7A80A0',flexWrap:'wrap'}}>
-              {['Sin coste inicial','Sin permanencia','Soporte incluido'].map(t => (
-                <span key={t} style={{display:'flex',alignItems:'center',gap:6}}><span style={{color:'#00D4AA'}}>✓</span>{t}</span>
-              ))}
+            {/* Visual right column */}
+            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+              <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid #252A3F',borderRadius:16,padding:'16px 14px',gridColumn:'1 / -1'}}>
+                <div style={{fontSize:10,color:'#4A5070',fontFamily:"'JetBrains Mono',monospace",marginBottom:8,textTransform:'uppercase',letterSpacing:'0.08em'}}>Canales disponibles</div>
+                <IlluWhatsappFlow/>
+              </div>
+              <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid #252A3F',borderRadius:16,padding:'16px 14px'}}>
+                <div style={{fontSize:10,color:'#4A5070',fontFamily:"'JetBrains Mono',monospace",marginBottom:8,textTransform:'uppercase',letterSpacing:'0.08em'}}>Ingresos recuperados</div>
+                <IlluRevenue lost={1800} recovered={2800} currency="€"/>
+              </div>
+              <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid #252A3F',borderRadius:16,padding:'16px 14px'}}>
+                <div style={{fontSize:10,color:'#4A5070',fontFamily:"'JetBrains Mono',monospace",marginBottom:8,textTransform:'uppercase',letterSpacing:'0.08em'}}>Agenda cubierta</div>
+                <IlluCalendar/>
+              </div>
             </div>
           </div>
         </div>
